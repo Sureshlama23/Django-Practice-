@@ -41,3 +41,25 @@ def evanOdd(request):
     except:
         pass
     return render(request,'evan.odd.html',{'result': result})
+def marksheet(request):
+    data = {}
+    if request.method == '':
+        return render(request,'marksheet.html',{'error':True})
+    else:
+        subject1 = eval(request.POST.get('subject1'))
+        subject2 = eval(request.POST.get('subject2'))
+        subject3 = eval(request.POST.get('subject3'))
+        subject4 = eval(request.POST.get('subject4'))
+        subject5 = eval(request.POST.get('subject5'))
+        Total = subject1 + subject2 + subject3 + subject4 + subject5
+        percentage = (Total*100/500)
+        if percentage >= 60:
+            division = 'First Division'
+        elif percentage >= 40:
+            division = 'Second Division'
+        elif percentage >=35:
+            division = 'Third Division'
+        else:
+            division = 'Fail'
+        data = {'total':Total,'percentage':percentage,'division':division}
+    return render(request,'marksheet.html',data)
