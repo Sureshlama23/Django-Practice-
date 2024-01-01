@@ -24,4 +24,6 @@ urlpatterns = [
     path('property-details/',views.propertyDetails,name='propertyDetails'),
     path('properties/',views.properties,name='properties'),
     path('contact/',views.contant,name='contact'),
+    path('calculator/',views.calculator,name='calculator'),
+    path('evan-odd/',views.evanOdd),
 ]
