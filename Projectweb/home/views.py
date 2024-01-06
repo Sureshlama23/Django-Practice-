@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .models import *
 
 # Create your views here.
 def home(request):
@@ -54,7 +55,7 @@ def marksheet(request):
         Total = subject1 + subject2 + subject3 + subject4 + subject5
         percentage = (Total*100/500)
         if percentage >= 60:
-            division = 'First Division'
+            division = 'First Division' 
         elif percentage >= 40:
             division = 'Second Division'
         elif percentage >=35:
@@ -63,3 +64,9 @@ def marksheet(request):
             division = 'Fail'
         data = {'total':Total,'percentage':percentage,'division':division}
     return render(request,'marksheet.html',data)
+def services(request):
+    # Ascending & Desending 
+    service_data = service.objects.all().order_by('service_name')[1:4]
+    # print(service_data)
+    data = {'data':service_data}
+    return render(request,'service.html',data)

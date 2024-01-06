@@ -13,4 +13,5 @@ def Home(request):
         result = num1 + num2
         data = {'vulues':values, 'result': result}
     return render(request,'index.html',data)
+
     
