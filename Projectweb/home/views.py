@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from .models import *
+from news.models import News
 
 # Create your views here.
 def home(request):
-    return render(request,'index.html')
+    news_data = News.objects.all()
+    data = {'news_data':news_data}
+    return render(request,'index.html',data)
 def propertyDetails(request):
     return render(request,'property-details.html')
 def properties(request):

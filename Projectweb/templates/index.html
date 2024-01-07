@@ -1,6 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
+<marquee behavior="" direction="" onmouseover="stop()" onmouseleave="start()">
+  {% for news in news_data %}
+
+  <a href="">{{news.title}} &nbsp; &nbsp; &nbsp; </a>
+
+  {% endfor %}
+</marquee>
 
   <div class="main-banner">
     <div class="owl-carousel owl-banner">
