@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'management',
     'restaurant',
     'accounting',
-    'restframework',
+    'rest_framework',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
