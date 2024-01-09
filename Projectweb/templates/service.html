@@ -6,10 +6,22 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script> 
     <title>Service</title>
+    <style>
+        #pd{
+            padding-left: 20px;
+        }
+    </style>
 </head>
 <body>
+    <div class='col-12' id="pd">
+        <form method="GET">
+            <input type="text" name="servicename">
+            <input type="submit" value="search"/>
+        </form>
+
+    </div>
     <section>
-    <div class="row">
+    <div class="row" id="pd">
         {% for n in data %}
             <div  class="col-lg-4 col-md-6">
                 <div class="single-feature mb-30">
@@ -22,7 +34,31 @@
                     </p>
                 </div>
             </div>
-        {% endfor %}
+        {% empty %}
+        No Data Found
+        {% endfor %}w
+        <nav aria-label="...">
+            <ul class="pagination">
+                {% if data.has_previous %}
+              <li class="page-item">
+                <a class="page-link" href="/services/?page=1" tabindex="-1">First</a>
+              </li>
+              <li class="page-item">
+                <a class="page-link" href="/services/?page={{data.previous_page_number}}" tabindex="+1">Previous</a>
+              </li>
+                {% endif %}
+              <li class="page-item"><a class="page-link" href="/services/?page=1">1</a></li>
+              <li class="page-item" aria-current="page">
+                <a class="page-link" href="/services/?page=2">2</a>
+              </li>
+              {% if data.has_next %}
+              <li class="page-item"><a class="page-link" href="/services/?page=3">3</a></li>
+              <li class="page-item">
+                <a class="page-link" href="/services/?page={{data.next_page_number}}">Next</a>
+                {% endif %}
+              </li>
+            </ul>
+          </nav>
     </div>
     </section>
 

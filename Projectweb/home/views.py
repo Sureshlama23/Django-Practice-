@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from news.models import News
+from django.core.paginator import Paginator
 
 # Create your views here.
 def home(request):
@@ -68,13 +69,25 @@ def marksheet(request):
         data = {'total':Total,'percentage':percentage,'division':division}
     return render(request,'marksheet.html',data)
 def services(request):
-    # Ascending & Desending 
-    service_data = service.objects.all().order_by('service_name')[1:4]
-    # print(service_data)
-    data = {'data':service_data}
+    service_data = service.objects.all()
+    paginator = Paginator(service_data,2)
+    page_number = request.GET.get('page')
+    servicefinalData = paginator.get_page(page_number)
+
+
+# <<<<<_____---------------__________>>>>>>>>>>#
+    # # Ascending & Desending 
+    # # To set query with like or exact macth user this ===>> 
+    # service_data = service.objects.all().order_by('service_name')
+    # if request.method == 'GET':
+    #     serviceTitle = request.GET.get('servicename')
+    #     if serviceTitle is not None:
+    #         service_data = service.objects.filter(service_name__icontains=serviceTitle)
+    # # print(service_data)
+    data = {'data':servicefinalData}
     return render(request,'service.html',data)
-def newsDetails(request,newsid):
-    newsDetails = News.objects.get(id=newsid)
+def newsDetails(request,slug):
+    newsDetails = News.objects.get(news_slug=slug)
     data = { 
         'newsDetails': newsDetails
     }
