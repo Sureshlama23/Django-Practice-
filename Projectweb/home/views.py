@@ -73,3 +73,9 @@ def services(request):
     # print(service_data)
     data = {'data':service_data}
     return render(request,'service.html',data)
+def newsDetails(request,newsid):
+    newsDetails = News.objects.get(id=newsid)
+    data = { 
+        'newsDetails': newsDetails
+    }
+    return render(request,'newsdetails.html',data)
