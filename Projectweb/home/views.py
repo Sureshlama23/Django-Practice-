@@ -1,7 +1,8 @@
 from django.shortcuts import render
-from .models import *
+from .models import service,contactEquiry
 from news.models import News
 from django.core.paginator import Paginator
+from django.http.response import HttpResponse
 
 # Create your views here.
 def home(request):
@@ -73,6 +74,7 @@ def services(request):
     paginator = Paginator(service_data,2)
     page_number = request.GET.get('page')
     servicefinalData = paginator.get_page(page_number)
+    total_page = servicefinalData.paginator.num_pages
 
 
 # <<<<<_____---------------__________>>>>>>>>>>#
@@ -84,7 +86,10 @@ def services(request):
     #     if serviceTitle is not None:
     #         service_data = service.objects.filter(service_name__icontains=serviceTitle)
     # # print(service_data)
-    data = {'data':servicefinalData}
+    data = {'data':servicefinalData,
+            'lastpage':total_page,
+            'totalpagelist':[page+1 for page in range(total_page)]
+    }
     return render(request,'service.html',data)
 def newsDetails(request,slug):
     newsDetails = News.objects.get(news_slug=slug)
@@ -92,3 +97,17 @@ def newsDetails(request,slug):
         'newsDetails': newsDetails
     }
     return render(request,'newsdetails.html',data)
+
+def saveEquiry(request):
+        if request.method == 'POST':
+            fullname = request.POST.get('fullname')
+            email = request.POST.get('email')
+            number = request.POST.get('number')
+            message = request.POST.get('message')
+            data = contactEquiry(fullname=fullname,email=email,number=number,message=message)
+            data.save()
+        else:
+            return HttpResponse('Invalid Input')
+        return render(request,'contact.html')
+def aboutUs(request):
+    return render(request,'aboutus.html')

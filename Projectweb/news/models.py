@@ -8,6 +8,7 @@ from autoslug import AutoSlugField
 class News(models.Model):
     title = models.CharField(max_length=100)
     news_des = HTMLField(null=True)
+    news_image = models.FileField(upload_to='news/',max_length=250,null=True,default=None)
 
     # slug = AutoSlugField(populate_from='title',unique=True,null=True,default=None)
 

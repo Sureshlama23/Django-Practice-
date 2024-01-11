@@ -3,6 +3,6 @@ from .models import News
 
 # Register your models here.
 class NewsAdmin(admin.ModelAdmin):
-    list_display = ('title', 'news_des')
+    list_display = ('id','title', 'news_des','news_image')
 
 admin.site.register(News,NewsAdmin)

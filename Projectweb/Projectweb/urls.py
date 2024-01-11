@@ -17,6 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from home import views
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +29,11 @@ urlpatterns = [
     path('calculator/',views.calculator,name='calculator'),
     path('evan-odd/',views.evanOdd),
     path('marksheet/',views.marksheet),
+    path('about-us/',views.aboutUs,name='about-us'),
     path('services/',views.services),
-    path('newsdetails/<slug>',views.newsDetails)
+    path('newsdetails/<slug>',views.newsDetails),
+    path('saveequiry',views.saveEquiry,name='saveequiry')
 ]
+
+if settings.DEBUG:
+    urlpatterns+=static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
