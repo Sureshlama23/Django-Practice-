@@ -21,8 +21,8 @@ class RoomType(models.Model):
 class EmployeeInfo(models.Model):
     name = models.CharField(max_length=100)
     number = models.IntegerField()
-    image = models.ImageField(upload_to='employee_img',null=True)
-    user = models.OneToOneField(User,on_delete=models.CASCADE)
+    image = models.ImageField(upload_to='employee_img')
+    user = models.OneToOneField(User,on_delete=models.CASCADE,null=True)
 
     def __str__(self) -> str:
         return self.name

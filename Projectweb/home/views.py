@@ -92,7 +92,7 @@ def services(request):
     }
     return render(request,'service.html',data)
 def newsDetails(request,slug):
-    newsDetails = News.objects.get(news_slug=slug)
+    newsDetails = News.objects.get(news_slug=slug) 
     data = { 
         'newsDetails': newsDetails
     }
