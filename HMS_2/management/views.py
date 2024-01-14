@@ -36,5 +36,5 @@ class EmployeeInfoCreate(ModelViewSet):
             else:
                 return Response(serializer.errors)
         except:
-            return Response('Key Value Missing!')
+            return Response({"error":"Group id is missing"})
 

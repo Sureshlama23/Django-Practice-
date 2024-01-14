@@ -5,3 +5,4 @@ urlpatterns = [
     path('owner-create/',owner_create,name='owner-create'),
     path('group-list/',group_list,name='group-list'),
 ]
+ 
