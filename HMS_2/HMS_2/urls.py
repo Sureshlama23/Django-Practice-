@@ -45,4 +45,5 @@ urlpatterns = [
     path('',include('user.urls')),
     path('',include('management.urls')),
     path('',include('frontdesk.urls')),
+    path('',include('restaurant.urls')),
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -7,12 +7,16 @@ from user.serializers import UserSerializer
 from rest_framework.response import Response
 from user.models import User
 from django.contrib.auth.models import Group
+from django.conf import settings
 
+from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
 class EmployeeInfoCreate(ModelViewSet):
     queryset = EmployeeInfo.objects.all()
     serializer_class = EmployeeIfnoSerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['user']
     def create(self,request):
         try:
             email = request.data.get('email')
